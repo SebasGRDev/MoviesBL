@@ -1,6 +1,6 @@
-package com.example.moviesbluelabs.model
+package com.example.moviesbluelabs.model.moviesintheaters
 
-data class Movie(
+data class MovieTheater(
     val adult: Boolean,
     val backdrop_path: String,
     val genre_ids: List<Int>,

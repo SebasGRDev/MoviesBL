@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moviesbluelabs.MoviesTheatersAdapter
 import com.example.moviesbluelabs.R
 import com.example.moviesbluelabs.TopMoviesAdapter
 import com.example.moviesbluelabs.databinding.FragmentMoviesBinding
@@ -35,7 +36,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Inflate RecyclerView
+        //Inflate RecyclerView Top Movies
         recyclerView = binding.rvTopMovies
         recyclerView.setHasFixedSize(true)
         binding.rvTopMovies.layoutManager =
@@ -56,6 +57,25 @@ class MoviesFragment : Fragment() {
             }
         }
 
+        //Inflate RecyclerView Movies in Theaters
+        recyclerView = binding.rvMoviesTheaters
+        recyclerView.setHasFixedSize(true)
+        binding.rvMoviesTheaters.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        val moviesInTheaterAdapter = MoviesTheatersAdapter(emptyList())
+        binding.rvMoviesTheaters.adapter = moviesInTheaterAdapter
 
+        CoroutineScope(Dispatchers.IO).launch {
+            val apiKey = getString(R.string.apy_key)
+            val moviesTheater = MovieClient.service.listMoviesInTheaters(apiKey)
+            val bodyTheater = moviesTheater.execute().body()
+
+            CoroutineScope(Dispatchers.Main).launch {
+                if (bodyTheater != null) {
+                    moviesInTheaterAdapter.listMoviesTheater = bodyTheater.moviesinTheater
+                    moviesInTheaterAdapter.notifyDataSetChanged()
+                }
+            }
+        }
     }
 }

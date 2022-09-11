@@ -1,4 +1,4 @@
-package com.example.moviesbluelabs.model
+package com.example.moviesbluelabs.model.topratedmovies
 
 data class MovieResult(
     val page: Int,

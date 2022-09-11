@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviesbluelabs.databinding.ItemMoviesListBinding
-import com.example.moviesbluelabs.model.Movie
-import com.example.moviesbluelabs.model.MovieResult
+import com.example.moviesbluelabs.model.topratedmovies.Movie
 
 class TopMoviesAdapter(
     var topMoviesList: List<Movie>)
