@@ -3,14 +3,15 @@ package com.example.moviesbluelabs
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviesbluelabs.databinding.ItemMoviesListBinding
-import com.example.moviesbluelabs.model.MovieBLModel
-import com.example.moviesbluelabs.model.MovieDetail
+import com.example.moviesbluelabs.model.Movie
+import com.example.moviesbluelabs.model.MovieResult
 
-class TopMoviesAdapter(private val topMoviesList : List<MovieDetail>) : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
+class TopMoviesAdapter(
+    var topMoviesList: List<Movie>)
+    : RecyclerView.Adapter<TopMoviesAdapter.TopMoviesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopMoviesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,7 +19,8 @@ class TopMoviesAdapter(private val topMoviesList : List<MovieDetail>) : Recycler
     }
 
     override fun onBindViewHolder(holder: TopMoviesViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val movie = topMoviesList[position]
+        holder.render(movie)
     }
 
     override fun getItemCount(): Int = topMoviesList.size
@@ -28,11 +30,13 @@ class TopMoviesAdapter(private val topMoviesList : List<MovieDetail>) : Recycler
 
         val binding = ItemMoviesListBinding.bind(view)
 
-        fun render(movieTop : MovieDetail) {
+        fun render(movieTop : Movie) {
             binding.tvTitle.text = movieTop.title
-            binding.tvQualification.text = movieTop.vote_count.toString()
             binding.tvVoteAverage.text = movieTop.vote_average.toString()
-            Glide.with(binding.ivPosterPath.context).load(movieTop.poster_path).into(binding.ivPosterPath)
+            Glide
+                .with(binding.root.context)
+                .load("https://image.tmdb.org/t/p/w500/${movieTop.poster_path}")
+                .into(binding.ivPosterPath)
         }
     }
 }
