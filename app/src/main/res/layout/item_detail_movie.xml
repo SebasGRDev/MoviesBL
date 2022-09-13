@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitleDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Title of the Movie"
+            android:gravity="center"
+            android:textSize="38sp"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            tools:background="@color/DarkBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ivPosterDetail"/>
+
+        <ImageView
+            android:id="@+id/ivPosterDetail"
+            android:layout_width="190dp"
+            android:layout_height="280dp"
+            tools:background="@drawable/backgrounddark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleDetail"/>
+
+        <TextView
+            android:id="@+id/tvQualiDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Calification"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:padding="16dp"
+            tools:background="@color/DarkBlue"
+            app:layout_constraintStart_toEndOf="@id/ivPosterDetail"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleDetail"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/viewQualification"
+            tools:background="@drawable/darkwallpaper"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toEndOf="@id/ivPosterDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvQualiDetail"
+            app:layout_constraintBottom_toTopOf="@id/tvTextOverwide"/>
+
+        <TextView
+            android:id="@+id/tvTextOverwide"
+            tools:background="@color/DarkBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Overwide"
+            android:padding="14dp"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            app:layout_constraintTop_toBottomOf="@id/ivPosterDetail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvOverwideDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"
+            tools:text="overwideDetail"
+            tools:background="@color/DarkBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTextOverwide"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
